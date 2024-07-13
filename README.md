@@ -261,6 +261,15 @@ Mc115 | SUCCESS => {
 Sat Jul 13 15:08:21 IST 2024
 [marieCurie@ansibleMaster ansible]$
 ```
+
+Please find the Telegram link to download the cloned ansibleMaster virtualbox's ova file. This archived zip file also contains the credentials.
+
+```Telegram:  ```
+
+Please find the sha256sum hash of the archived file 
+
+```sha256sum: a5a60d77110dd04caeab8aa9bb8878cb694866208c4dce633c1a9d98b9abca3f  ansibleMaster.zip ```
+
 100! times thank you very much 🙏.
 
 Have a fun with this ☢️ `radioActive` lab with `marieCurie` 🤍 💙 🖤
