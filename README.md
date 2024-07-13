@@ -37,7 +37,29 @@ Download the minimal ISO from the AlmaLinux official website and see this YouTub
    - **Note:** This user will be the ansible automation user.
 4. Uncomment the line `%wheel ALL=(ALL) NOPASSWD: ALL` in the `/etc/sudoers` file so that users in the `wheel` group will not be prompted for a password when they perform sudo commands.
 5. Check the syntax by the command `sudo visudo -c`. Make sure you get the parsed OK. If there is any syntax error, correct it before the session expires. If it expires, you will not be able to log in as root and will have to boot in single user mode to troubleshoot.
-6. Make sure the Ansible user's account and password expiry is set to never, which is the best practice for the Ansible Admin User.
+7. Make sure the Ansible user's account and password expiry is set to never, which is the best practice for the Ansible Admin User.
+
+```
+[marieCurie@ansibleMaster ~]$ id marieCurie
+uid=1000(marieCurie) gid=1000(marieCurie) groups=1000(marieCurie),10(wheel)
+[marieCurie@ansibleMaster ~]$ sudo grep wheel /etc/sudoers
+## Allows people in group wheel to run all commands
+%wheel	ALL=(ALL)	ALL
+%wheel	ALL=(ALL)	NOPASSWD: ALL
+[marieCurie@ansibleMaster ~]$ sudo visudo -c
+/etc/sudoers: parsed OK
+[marieCurie@ansibleMaster ~]$ chage -l marieCurie
+Last password change					: never
+Password expires					: never
+Password inactive					: never
+Account expires						: never
+Minimum number of days between password change		: 0
+Maximum number of days between password change		: 99999
+Number of days of warning before password expires	: 7
+[marieCurie@ansibleMaster ~]$ date
+Sat Jul 13 20:49:44 IST 2024
+[marieCurie@ansibleMaster ~]$ 
+```
 
 ## 7. Installing Ansible & Setting up:
 
@@ -236,6 +258,7 @@ Mc115 | SUCCESS => {
 Sat Jul 13 15:08:21 IST 2024
 [marieCurie@ansibleMaster ansible]$
 ```
-100! times thank you very much.
+100! times thank you very much 🙏.
 
-Have a fun with this `radioActive` lab with `marieCurie` `u2764\ufe0f`
+Have a fun with this ☢️ `radioActive` lab with `marieCurie` 🤍 💙 🖤
+
