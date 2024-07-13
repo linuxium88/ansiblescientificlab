@@ -2,7 +2,8 @@
 
 ## Descriptions:
 
-From here, we can learn how to build the ansible lab with the clients. I build the ansibleMaster and I have cloned that as 5 clients such as Po84, Ra88, Pu94, Fr87, and Mc115 and modified the necessary settings in the `/etc/hosts`.
+From here, we can learn how to build the ansible lab with the clients. I build the ansibleMaster and I have cloned that as 5 clients such as Po84, Ra88, Pu94, Fr87, and Mc115 and modified the necessary settings in the `/etc/hosts` and 
+the `ansible.cfg`.
 
 ## Host Hardware Requirements:
 
@@ -30,6 +31,8 @@ From here, we can learn how to build the ansible lab with the clients. I build t
 ## Building Master:
 
 Download the minimal ISO from the AlmaLinux official website and see this YouTube link on how to install the AlmaLinux minimal ISO.
+
+`Link=`
 
 1. Note the root user password and uncheck the lock option.
 2. Check the SSH option to allow root user.
