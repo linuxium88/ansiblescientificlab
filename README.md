@@ -39,25 +39,25 @@ Download the minimal ISO from the AlmaLinux official website and see this YouTub
 5. Check the syntax by the command `sudo visudo -c`. Make sure you get the parsed OK. If there is any syntax error, correct it before the session expires. If it expires, you will not be able to log in as root and will have to boot in single user mode to troubleshoot.
 6. Make sure the Ansible user's account and password expiry is set to never, which is the best practice for the Ansible Admin User.
 
-## Installing Ansible & Setting up:
+## 7. Installing Ansible & Setting up:
 
- 7. Once you have logged in with the Admin account, run the below command to install Ansible, vim, and nano:
+Once you have logged in with the Admin account, run the below command to install Ansible, vim, and nano:
 
+```bash
 sudo yum install platform-python* ansible* vim* nano*
+```
+## Creating the Ansible Directory:
 
-### Creating the Ansible Directory:
-
+```bash
 mkdir -p ansible/roles
 cd ansible
 touch zinventory
 touch ansible.cfg
-
+```
 8. Power off the VM & clone this VM as ansibleMaster and 5 clients.
-
 9. Rename the clients with respective names like Po84, Ra88, Pu94, Fr87, and Mc115. Power on the clients and rename the hostnames accordingly. Note the IPs of the clients.
-
-10. Power on the ansibleMaster, change the hostname to ansibleMaster, and add the clients' IP details in the Master as shown below:
-
+10. Power on the ansibleMaster, change the hostname to ansibleMaster, and add the clients' IP details in the Master's ```/etc/hosts``` as shown below:
+```bash
 [marieCurie@ansibleMaster ~]$ cat /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
@@ -74,8 +74,13 @@ touch ansible.cfg
 [marieCurie@ansibleMaster ~]$ date
 Sat Jul 13 13:15:04 IST 2024
 [marieCurie@ansibleMaster ~]$
-
-11. Set the ansible.cfg in the ansible directory (on the ansibleMaster):
+```
+11. Set the ansible.cfg in the ansible directory. ```7th step``` we could see we have created one empty ansible.cfg file (on the ansibleMaster):
+```bash
+cd ansible
+```
+Add the below entries to the ansible.cfg:
+```
 [defaults]
 inventory=./zinventory
 role_path=./roles
@@ -87,9 +92,9 @@ become=true
 become_method=sudo
 become_user=root
 become_ask_pass=false
-
+```
 Example:
-
+```
 [marieCurie@ansibleMaster ansible]$ cat ansible.cfg
 [defaults]
 inventory=./zinventory
@@ -105,9 +110,9 @@ become_ask_pass=false
 [marieCurie@ansibleMaster ansible]$ date
 Sat Jul 13 13:16:34 IST 2024
 [marieCurie@ansibleMaster ansible]$
-
+```
 12. Inventory file example (on the ansibleMaster):
-
+```
 [Dev]
 Po84
 
@@ -124,9 +129,9 @@ Mc115
 [Web]
 Pu94
 Fr87
-
+```
 Example:
-
+```
 [marieCurie@ansibleMaster ansible]$ cat zinventory
 [Dev]
 Po84
@@ -147,10 +152,17 @@ Fr87
 [marieCurie@ansibleMaster ansible]$ date
 Sat Jul 13 13:18:17 IST 2024
 [marieCurie@ansibleMaster ansible]$
-
-13. .vimrc file contents:
-
-[marieCurie@ansibleMaster ansible]$ cat ~/.vimrc
+```
+13. `.vimrc` file contents:
+Add below entries in .vimrc file, so the code will be clear
+```
+set ai
+set et
+set ts=2
+set cursorcolumn
+```
+Example:
+```[marieCurie@ansibleMaster ansible]$ cat ~/.vimrc
 set ai
 set et
 set ts=2
@@ -158,9 +170,72 @@ set cursorcolumn
 [marieCurie@ansibleMaster ansible]$ date
 Sat Jul 13 13:19:27 IST 2024
 [marieCurie@ansibleMaster ansible]$
-
+```
 14. Create an SSH key for the ansible user "marieCurie" and map it to the clients under the ansible user "marieCurie". Refer to this link for detailed instructions.
-15. Verification: To check the ansible setup, run the following command from the ansible directory:
-ansible all -m ping
 
-This should give a success output. That's it about the lab.
+To generate the ssh-key by the command `ssh-keygen`
+
+To copy the ssh oub key to the rargets by the below commands
+```
+   ssh-copy-id marieCurie@P84
+   ssh-copy-id marieCurie@R88
+   ssh-copy-id P94
+   ssh-copy-id F87
+   ssh-copy-id M115
+
+```
+Note: Above commands, for the last two nodes I haven't used the username. System will identify automatically by the source user i.e `marieCurie`. We know that ansible user 
+already present in the all nodes, right.
+
+To check the ansible setup, run the following command from the ansible directory:
+
+```bash
+cd ~/ansible/
+ansible all -m ping
+```
+Example:
+
+```bash
+[marieCurie@ansibleMaster ansible]$ ansible all -m ping
+Pu94 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+Ra88 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+Po84 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+Fr87 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+Mc115 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[marieCurie@ansibleMaster ansible]$ date
+Sat Jul 13 15:08:21 IST 2024
+[marieCurie@ansibleMaster ansible]$
+```
+100! times thank you very much.
+
+Have a fun with this `radioActive` lab with `marieCurie` `u2764\ufe0f`
