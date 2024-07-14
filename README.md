@@ -264,7 +264,7 @@ Sat Jul 13 15:08:21 IST 2024
 
 Please find the Telegram link to download the cloned ansibleMaster virtualbox's ova file. This archived zip file also contains the credentials.
 
-```Telegram:  ```
+```Telegram: https://t.me/linuxium88/54 ```
 
 Please find the sha256sum hash of the archived file 
 
