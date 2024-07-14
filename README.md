@@ -32,7 +32,7 @@ the `ansible.cfg`.
 
 Download the minimal ISO from the AlmaLinux official website and see this YouTube link on how to install the AlmaLinux minimal ISO.
 
-`Link=`
+`Link= https://youtu.be/wRoQvlB7ud0`
 
 1. Note the root user password and uncheck the lock option.
 2. Check the SSH option to allow root user.
